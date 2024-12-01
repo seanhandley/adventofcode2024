@@ -33,12 +33,8 @@
 
 require_relative "./advent1.1"
 
-def appears_in(list, element)
-  list.count { |e| e == element }
-end
-
 def similarity_score
-  a.sum { |n| n * appears_in(b, n) }
+  left_list.sum { _1 * right_list.count(_1) }
 end
 
 if __FILE__ == $0

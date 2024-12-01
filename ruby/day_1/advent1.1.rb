@@ -43,19 +43,22 @@
 # Your actual left and right lists contain many location IDs. What is the total distance between your lists?
 
 def input
-  @input ||= STDIN.read.split("\n").map { |line| line.split.map(&:to_i) }
+  @input ||= STDIN.readlines.
+                   map { |line| line.split.map(&:to_i) }.
+                   transpose
 end
 
-def a
-  input.map(&:first).sort
+def left_list
+  input.first.sort
 end
 
-def b
-  input.map(&:last).sort
+def right_list
+  input.last.sort
 end
 
 def diffs
-  a.zip(b).map { |x, y| (x - y).abs }
+  left_list.zip(right_list).
+    map { (_1 - _2).abs }
 end
 
 if __FILE__ == $0
